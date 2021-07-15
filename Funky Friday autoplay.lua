@@ -9,3 +9,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-frid
         message.Text = "Loaded! If the script is not working, press 'F9' to check for any errors."
         wait(4.5)
         message:Destroy()
+-- might be skidded so ima print shit
+  print("is script loaded? if not ur being skidded lol!!")
