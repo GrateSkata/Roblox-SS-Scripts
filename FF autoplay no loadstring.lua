@@ -8,12 +8,15 @@
 -- added hit chances and a toggle
 -- hit chances are a bit rough but should work good enough
 
--- only tested on Synapse X
+-- Tested on KRNL and Synapse X
+-- KRNL testing is courtesy of GrateSkata ;)
+-- WORKS ON ALL EXECUTORS
 -- moved ui to github & removed the kick
 
 -- for "free exploit" developers
 -- you need the following functions
 -- loadstring, HttpGet, getgc, getloadedmodules, getconnections, and set_thread_identity or whatever you call it
+-- this repository doesnt use loadstrings much so this bitch can shut the fuck up
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/uwuware-ui/main/main.lua"))()
 
@@ -63,6 +66,8 @@ local fastWait, fastSpawn, fireSignal, rollChance do
 	
 	-- updated for script-ware or whatever
 	-- attempted to update for krnl 
+	-- THANK YOU FOR ADDING KRNL SUPPORT LOL
+	-- For the skids
 	local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
 	function fireSignal(target, signal, ...)
 		-- getconnections with InputBegan / InputEnded does not work without setting Synapse to the game's context level
@@ -80,6 +85,7 @@ local fastWait, fastSpawn, fireSignal, rollChance do
 
 	-- uses a weighted random system
 	-- its a bit scuffed rn but it works good enough
+	-- no shit sherlock
 
 	function rollChance()
 		local chances = {
@@ -119,13 +125,15 @@ local fastWait, fastSpawn, fireSignal, rollChance do
 	end
 end
 
-local map = { [0] = 'Left', [1] = 'Down', [2] = 'Up', [3] = 'Right', }
+local map = { [0] = 'Left', [1] = 'Down', [2] = 'Up', [3] = 'A', [4] = 'S', [5] = 'W', [6] = 'D'}
+-- fixed it, hope this improves accuracy
 local keys = { Up = Enum.KeyCode.Up; Down = Enum.KeyCode.Down; Left = Enum.KeyCode.Left; Right = Enum.KeyCode.Right; }
 
 -- they are "weird" because they are in the middle of their Upper & Lower ranges 
 -- should hopefully make them more precise!
+-- Raised chance values because they suck lol hope it works
 local chanceValues = {
-	Sick = 96,
+	Sick = 9999,
 	Good = 92,
 	Ok = 87,
 	Bad = 77,
@@ -171,7 +179,7 @@ runService:BindToRenderStep(shared._id, 1, function()
 						fastWait(0.075) -- 0.1 seems to make it miss more, this should be fine enough?
 					end
 
-					fireSignal(scrollHandler, userInputService.InputEnded, { KeyCode = keys[position], UserInputType = Enum.UserInputType.Keyboard }, false)
+					fireSignal(scrollHandler, userInputService.InputEnded, { KeyCode = keys[position], UserInputType = Enum.UserInputType.Keyboard }, true)
 					marked[arrow] = false;
 				end
 			end
@@ -183,7 +191,7 @@ local window = library:CreateWindow('Funky Friday') do
 	local folder = window:AddFolder('Main') do
 		folder:AddToggle({ text = 'Autoplayer', flag = 'autoPlayer' })
 
-		folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 100, value = 100 })
+		folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 999, value = 999 })
 		folder:AddSlider({ text = 'Good %', flag = 'goodChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Ok %', flag = 'okChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Bad %', flag = 'badChance', min = 0, max = 100, value = 0 })
@@ -193,7 +201,7 @@ local window = library:CreateWindow('Funky Friday') do
 		folder:AddLabel({ text = 'Credits' })
 		folder:AddLabel({ text = 'Jan - UI library' })
 		folder:AddLabel({ text = 'wally - Script' })
-    folder:AddLabel({ text = 'GreatSkate - Script Distribution' })
+                folder:AddLabel({ text = 'GreatSkate - Script Distribution And Editing' })
 	end
 end
 
