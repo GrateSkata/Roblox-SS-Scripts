@@ -187,16 +187,16 @@ runService:BindToRenderStep(shared._id, 1, function()
 	end
 end)
 
-local window = library:CreateWindow('Funky Friday') do
-	local folder = window:AddFolder('Main') do
-		folder:AddToggle({ text = 'Autoplayer', flag = 'autoPlayer' })
+local window = library:CreateWindow('Funky Autoplayer') do
+	local folder = window:AddFolder('Settings') do
+		folder:AddToggle({ text = 'Autobot', flag = 'autoPlayer' })
 
 		folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Good %', flag = 'goodChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Ok %', flag = 'okChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Bad %', flag = 'badChance', min = 0, max = 100, value = 0 })
 	end
-
+	
 	local folder = window:AddFolder('Credits') do
 		folder:AddLabel({ text = 'Credits' })
 		folder:AddLabel({ text = 'Jan - UI library' })
