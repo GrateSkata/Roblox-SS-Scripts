@@ -191,7 +191,7 @@ local window = library:CreateWindow('Funky Friday') do
 	local folder = window:AddFolder('Main') do
 		folder:AddToggle({ text = 'Autoplayer', flag = 'autoPlayer' })
 
-		folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 999, value = 999 })
+		folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Good %', flag = 'goodChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Ok %', flag = 'okChance', min = 0, max = 100, value = 0 })
 		folder:AddSlider({ text = 'Bad %', flag = 'badChance', min = 0, max = 100, value = 0 })
